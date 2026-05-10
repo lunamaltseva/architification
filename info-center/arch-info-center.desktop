@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Arch Info Center
+GenericName=System Information
+Comment=Premium system information with subscription tiers
+Exec={REPO}/info-center/build/info-center
+Icon=hwinfo
+Type=Application
+Categories=System;
+Keywords=arch;linux;system;info;

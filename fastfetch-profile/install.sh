@@ -4,8 +4,7 @@ set -e
 FASTFETCH_DIR="$HOME/.config/fastfetch"
 mkdir -p "$FASTFETCH_DIR"
 
-# Expand ~ in logo source to absolute path
-sed "s|/home/lunamaltseva|$HOME|g" config.jsonc > "$FASTFETCH_DIR/config.jsonc"
+cp config.jsonc "$FASTFETCH_DIR/config.jsonc"
 cp logo.txt     "$FASTFETCH_DIR/logo.txt"
 
 echo "✓ Fastfetch profile installed to $FASTFETCH_DIR"

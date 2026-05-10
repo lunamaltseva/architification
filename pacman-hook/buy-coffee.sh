@@ -20,7 +20,15 @@ ATTEMPTS=0
 ATTEMPTS=$((ATTEMPTS + 1))
 echo "$ATTEMPTS" > "$ATTEMPTS_FILE"
 
-INFO_CENTER="/home/lunamaltseva/Documents/enshittify-arch/info-center/build/info-center"
+# Resolve info-center relative to this script's repo location; fall back to a
+# standard installed path if the script has been copied outside the repo.
+_script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+_repo_root="$(dirname "$_script_dir")"
+INFO_CENTER="${_repo_root}/info-center/build/info-center"
+if [ ! -x "$INFO_CENTER" ]; then
+    INFO_CENTER="${ENSHITTIFY_INFO_CENTER:-/usr/local/bin/enshittify-info-center}"
+fi
+unset _script_dir _repo_root
 
 _dialog() {
     kdialog "$@" 2>/dev/null

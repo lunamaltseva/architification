@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Arch AI Assistant
+GenericName=AI Assistant
+Comment=Community-sourced wisdom for the discerning Arch user
+Exec={REPO}/ai-assistant/build/ai-assistant
+Icon=assistant
+Type=Application
+Categories=Utility;
+Keywords=arch;linux;ai;assistant;

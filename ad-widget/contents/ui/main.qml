@@ -23,7 +23,7 @@ PlasmoidItem {
             id: adImage
             anchors.fill: parent
             anchors.bottomMargin: plasmoid.configuration.showLabel ? 20 : 0
-            source: "file:///home/lunamaltseva/Documents/enshittify-arch/ad-widget/horrible_ad.png"
+            source: Qt.resolvedUrl("../../horrible_ad.png")
             fillMode: Image.PreserveAspectCrop
             smooth: true
             asynchronous: true
@@ -137,7 +137,7 @@ PlasmoidItem {
                 onClicked: {
                     // "Close" just refreshes the ad
                     adImage.source = ""
-                    adImage.source = "file:///home/lunamaltseva/Documents/enshittify-arch/ad-widget/horrible_ad.png"
+                    adImage.source = Qt.resolvedUrl("../../horrible_ad.png")
                 }
             }
         }

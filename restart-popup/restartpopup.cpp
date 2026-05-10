@@ -45,14 +45,15 @@ void RestartPopup::showFakeShutdown() {
 
     overlay->showFullScreen();
 
+    const QString user = qEnvironmentVariable("USER", "user");
     const QStringList lines = {
         "Broadcast message from root (pts/0):",
         "         The system will power off now!",
         "",
         "[  OK  ] Stopped Daily man-db regeneration.",
         "[  OK  ] Stopped Daily rotation of log files.",
-        "         Stopping Session 3 of User lunamaltseva...",
-        "[  OK  ] Stopped Session 3 of User lunamaltseva.",
+        "         Stopping Session 3 of User " + user + "...",
+        "[  OK  ] Stopped Session 3 of User " + user + ".",
         "         Stopping User Manager for UID 1000...",
         "[  OK  ] Stopped User Manager for UID 1000.",
         "[  OK  ] Stopped User Login Management.",
