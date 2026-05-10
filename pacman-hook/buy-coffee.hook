@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Checking your gratitude levels...
+When = PreTransaction
+Exec = /usr/local/bin/buy-coffee.sh

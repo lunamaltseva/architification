@@ -1,0 +1,20 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "ads@enshittify.arch",
+                "Name": "Enshittification Department"
+            }
+        ],
+        "Category": "Utilities",
+        "Description": "Display a premium advertising experience directly on your desktop. Monetize your own screen.",
+        "Icon": "image-x-generic",
+        "Id": "org.enshittify.adwidget",
+        "License": "GPL-3.0+",
+        "Name": "Ad Widget Pro™",
+        "Version": "2.0",
+        "Website": "https://archlinux.org"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
