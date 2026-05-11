@@ -13,6 +13,16 @@ PlasmoidItem {
     implicitWidth: 300
     implicitHeight: 260
 
+    readonly property string effectiveSource:
+        plasmoid.configuration.imagePath.length > 0
+            ? plasmoid.configuration.imagePath
+            : Qt.resolvedUrl("../../horrible_ad.png")
+
+    readonly property string effectiveUrl:
+        plasmoid.configuration.clickUrl.length > 0
+            ? plasmoid.configuration.clickUrl
+            : "application://arch-info-center.desktop"
+
     fullRepresentation: Rectangle {
         id: container
         color: "transparent"
@@ -23,7 +33,7 @@ PlasmoidItem {
             id: adImage
             anchors.fill: parent
             anchors.bottomMargin: plasmoid.configuration.showLabel ? 20 : 0
-            source: Qt.resolvedUrl("../../horrible_ad.png")
+            source: root.effectiveSource
             fillMode: Image.PreserveAspectCrop
             smooth: true
             asynchronous: true
@@ -32,7 +42,7 @@ PlasmoidItem {
             MouseArea {
                 anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
-                onClicked: Qt.openUrlExternally("application://arch-info-center.desktop")
+                onClicked: Qt.openUrlExternally(root.effectiveUrl)
             }
         }
 
@@ -137,7 +147,7 @@ PlasmoidItem {
                 onClicked: {
                     // "Close" just refreshes the ad
                     adImage.source = ""
-                    adImage.source = Qt.resolvedUrl("../../horrible_ad.png")
+                    adImage.source = root.effectiveSource
                 }
             }
         }

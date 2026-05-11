@@ -143,6 +143,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     addItem(sidebar, "pci",                         "PCI");
     addItem(sidebar, "drive-harddisk",              "SMART Status");
     addItem(sidebar, "temperature-normal",          "Sensors");
+    addItem(sidebar, "drive-removable-media",       "USB Devices");
+    addGroup(sidebar, "Graphics");
+    addItem(sidebar, "video-display",               "EDID");
+    addItem(sidebar, "video-display",               "OpenCL");
+    addItem(sidebar, "video-display",               "OpenGL (EGL)");
+    addItem(sidebar, "video-display",               "OpenGL (GLX)");
+    addItem(sidebar, "video-display",               "Vulkan");
+    addItem(sidebar, "wayland",                     "Wayland");
+    addItem(sidebar, "preferences-system-windows",  "Window Manager");
+    addItem(sidebar, "video-display",               "X-Server");
 
     sidebar->setCurrentRow(1);
 
@@ -291,24 +301,24 @@ QWidget *MainWindow::createAboutPage() {
 
     m_tierGroup = new QButtonGroup(this);
 
-    const QStringList f1 = {"✓ Arch Linux access",    "✓ Rolling updates",
-                              "✓ Pacman",               "✗ AI Assistant",
-                              "✗ Hyprland access",      "✗ Priority support"};
-    const QStringList f2 = {"✓ Arch Linux access",    "✓ Rolling updates",
-                              "✓ Pacman",               "✓ AI Assistant",
-                              "✗ Hyprland access",      "✗ Priority support"};
-    const QStringList f3 = {"✓ Arch Linux access",    "✓ Rolling updates",
-                              "✓ Pacman",               "✓ AI Assistant",
-                              "✓ Hyprland access",      "✓ Priority support"};
+    const QStringList f1 = {"✓ Arch Linux access", "✓ No ads", "✓ Rolling updates",
+                              "✓ Pacman", "✗ AUR access", "✗ AI Assistant",
+                              "✗ Hyprland access",      "✗ Remote support"};
+    const QStringList f2 = {"✓ Arch Linux access", "✓ No ads", "✓ Rolling updates",
+                              "✓ Pacman", "✓ AUR access", "✓ AI Assistant",
+                              "✗ Hyprland access",      "✗ Remote support"};
+    const QStringList f3 = {"✓ Arch Linux access", "✓ No ads", "✓ Rolling updates",
+                              "✓ Pacman", "✓ AUR access", "✓ AI Assistant",
+                              "✓ Hyprland access",      "✓ Remote support"};
 
     auto *r0 = new QRadioButton; r0->setChecked(true); m_tierGroup->addButton(r0, 0);
     auto *r1 = new QRadioButton;                        m_tierGroup->addButton(r1, 1);
     auto *r2 = new QRadioButton;                        m_tierGroup->addButton(r2, 2);
 
     auto *tiersRow = new QHBoxLayout; tiersRow->setSpacing(12);
-    tiersRow->addWidget(makeTierCard("Arch (Free)",      "$7.99",  f1, "⭐ BEST VALUE", r0));
-    tiersRow->addWidget(makeTierCard("Arch Pro",         "$39.99", f2, "",              r1));
-    tiersRow->addWidget(makeTierCard("Arch Enterprise",  "$79.99", f3, "🏆 MOST FEATURES", r2));
+    tiersRow->addWidget(makeTierCard("Arch Basic",      "$7.99",  f1, "", r0));
+    tiersRow->addWidget(makeTierCard("Arch Pro",         "$19.99", f2, "⭐ BEST VALUE", r1));
+    tiersRow->addWidget(makeTierCard("Arch Enterprise",  "$59.99", f3, "🏆 MOST FEATURES", r2));
     vlay->addLayout(tiersRow);
 
     auto *subBtn = new QPushButton("Subscribe Now  →");

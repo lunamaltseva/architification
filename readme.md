@@ -1,5 +1,7 @@
 ## Project 4: Death by "Userbase Left"
 
+<img src="linux_marketshare_slopegraph.png">
+
 The project includes:
 
 - An "AI" assistant, which tells users to switch to Windows OR executes requests incredibly poorly
@@ -11,9 +13,9 @@ The project includes:
 
 Media coverage of the change:
 
-[lunamaltseva.dev/breakingnews](lunamaltseva.dev/breakingnews)
+[lunamaltseva.dev/breakingnews](https://lunamaltseva.dev/breakingnews)
 
-Install at your own risk.
+Install at your own risk. 
 
 ---
 
@@ -25,56 +27,28 @@ Install at your own risk.
 sudo pacman -S qt6-base cmake ninja kdialog fastfetch
 ```
 
-### 1. Build the Qt apps
+Then, from the repository root:
 
 ```bash
-bash build-all.sh
-```
-
-Builds `info-center`, `restart-popup`, and `ai-assistant` into their respective `build/` directories.
-
-### 2. Pacman hook + zsh wrapper
-
-```bash
-# Install the hook system-wide (requires sudo)
-sudo bash pacman-hook/install.sh
-
-# Install the zsh wrapper so "sudo pacman -Syu" is intercepted
-bash pacman-hook/setup-zsh.sh
-source ~/.zshrc
-```
-
-### 3. Fastfetch profile
-
-```bash
-cd fastfetch-profile
 bash install.sh
 ```
 
-### 4. KDE Plasma ad widget
+The script builds all Qt apps, installs the pacman hook (prompts for sudo), sets up the zsh wrapper, installs the fastfetch profile, registers the Plasma widget, and adds app launcher entries. It will tell you exactly what to do if anything is missing.
 
-Place your ad image at `ad-widget/horrible_ad.png`, then:
+After installation, run `source ~/.zshrc` to activate the pacman wrapper in your current shell.
 
-```bash
-kpackagetool6 --type Plasma/Applet --install ad-widget
-```
+**To add the ad widget to your desktop:** right-click the desktop → Add Widgets → search for *Ad Widget Pro™*. Place your ad image at `ad-widget/horrible_ad.png` (or configure a path via right-click → Configure on the widget).
 
-Restart Plasma (`plasmashell --replace &`), then add **Ad Widget Pro™** from the widget picker.
-
-### 5. App launcher entries
-
-```bash
-REPO=$(pwd)
-sed "s|{REPO}|$REPO|" ai-assistant/arch-ai-assistant.desktop > ~/.local/share/applications/arch-ai-assistant.desktop
-sed "s|{REPO}|$REPO|" info-center/arch-info-center.desktop   > ~/.local/share/applications/arch-info-center.desktop
-update-desktop-database ~/.local/share/applications/
-```
-
-To change the AI assistant icon, edit `~/.local/share/applications/arch-ai-assistant.desktop` and set `Icon=` to any theme icon name or an absolute path to an image.
-
-### 6. Autostart (not recommended)
-
-To have the restart popup and AI assistant launch on login, add their binaries to **System Settings → Autostart**:
-
+**NOT RECOMMENDED — autostart** via System Settings → Autostart:
 - `restart-popup/build/restart-popup`
 - `ai-assistant/build/ai-assistant`
+
+**To change the AI assistant icon**, edit `~/.local/share/applications/arch-ai-assistant.desktop` and set `Icon=` to a theme icon name or an absolute image path.
+
+## Uninstallation
+
+```bash
+bash uninstall.sh
+```
+
+Removes the pacman hook, zsh wrapper, fastfetch profile, Plasma widget, and desktop entries. Built binaries in `*/build/` are left in place — delete the repository directory to remove them entirely.
